@@ -2,6 +2,7 @@ package com.roksky.android.tools.reporting.model;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
@@ -14,6 +15,6 @@ public final class Query {
     @Element(required = false)
     public String statement;
 
-    @Element(name = "parameters")
+    @ElementList(name = "parameters", required = false)
     public List<QueryParameter> queryParameters;
 }
