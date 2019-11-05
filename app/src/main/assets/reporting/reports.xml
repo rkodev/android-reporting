@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dashboard name="Sales Summary">
+
+    <queries>
+        <query id="one">
+            <statement>
+                select count(distinct vacc.base_entity_id)
+                from vaccines vacc
+                inner join ec_child ec on ec.base_entity_id = vacc.base_entity_id and
+                (ifnull(ec.entry_point,'') = 'PNC')
+                inner join ec_family_member ef on ec.base_entity_id = ef.base_entity_id and
+                ef.date_removed is null
+                '-6 month');
+            </statement>
+        </query>
+        <query id="two">
+            <statement>
+                select base_entity_id , name , age
+                from vaccines vacc
+                inner join ec_child ec on ec.base_entity_id = vacc.base_entity_id and
+                (ifnull(ec.entry_point,'') = 'PNC')
+                inner join ec_family_member ef on ec.base_entity_id = ef.base_entity_id and
+                ef.date_removed
+                '-6
+                month');
+            </statement>
+            <parameters>
+                <query-parameter>
+                    <name>name</name>
+                    <filter>filter-one</filter>
+                </query-parameter>
+            </parameters>
+        </query>
+    </queries>
+
+    <report-filters>
+        <report-filter id="filter-one">
+            <name>Schools</name>
+            <query>one</query>
+            <id-column>one</id-column>
+            <name-column>one</name-column>
+        </report-filter>
+    </report-filters>
+
+    <reports>
+        <report>
+            <type>Tabular</type>
+            <query-source>one</query-source>
+            <name>Students List</name>
+
+            <report-header>
+                <report-column>
+                    <query-column>name</query-column>
+                    <title>Names</title>
+                </report-column>
+                <report-column>
+                    <query-column>gender</query-column>
+                    <title>Gender</title>
+                </report-column>
+                <report-column>
+                    <query-column>age</query-column>
+                    <title>Age</title>
+                </report-column>
+            </report-header>
+
+            <report-footers>
+                <footer>
+                    <name>Total Member</name>
+                    <compute>count</compute>
+                    <column>base_entity_id</column>
+                </footer>
+                <footer>
+                    <name>Amount</name>
+                    <compute>sum</compute>
+                    <column>age</column>
+                </footer>
+                <footer>
+                    <name>Average</name>
+                    <compute>avg</compute>
+                    <column>age</column>
+                </footer>
+            </report-footers>
+        </report>
+
+        <report>
+            <type>Charts</type>
+            <chart-type>Bar Chart</chart-type>
+            <query-source>one</query-source>
+            <name>Number of pregnant women</name>
+
+            <report-footers>
+                <report-footer>
+                    <name>Total Member</name>
+                    <compute>count</compute>
+                    <column>base_entity_id</column>
+                </report-footer>
+                <report-footer>
+                    <name>Amount</name>
+                    <compute>sum</compute>
+                    <column>age</column>
+                </report-footer>
+                <report-footer>
+                    <name>Average</name>
+                    <compute>avg</compute>
+                    <column>age</column>
+                </report-footer>
+            </report-footers>
+        </report>
+    </reports>
+
+</dashboard>
