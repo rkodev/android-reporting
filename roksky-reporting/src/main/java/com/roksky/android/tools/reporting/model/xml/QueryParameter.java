@@ -1,4 +1,4 @@
-package com.roksky.android.tools.reporting.model;
+package com.roksky.android.tools.reporting.model.xml;
 
 import org.simpleframework.xml.Element;
 

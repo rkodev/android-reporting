@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import com.roksky.android.tools.reporting.model.DashBoard;
+import com.roksky.android.tools.reporting.model.xml.DashBoard;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;

@@ -5,8 +5,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.roksky.android.tools.reporting.model.DashBoard;
-import com.roksky.android.tools.reporting.utils.FileReaderUtil;
+import com.roksky.android.tools.reporting.ReportingLibrary;
+import com.roksky.android.tools.reporting.model.xml.DashBoard;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +19,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    DashBoard dashBoard = FileReaderUtil.getDashBoard("reporting/reports.xml", getApplication());
+                    DashBoard dashBoard = ReportingLibrary.getInstance()
+                            .withContext(getApplicationContext())
+                            .withFilePath("reporting/reports.xml")
+                            .getDashBoard();
+                    //FileReaderUtil.getDashBoard("reporting/reports.xml", getApplication());
                     System.out.print(dashBoard.name);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -2,7 +2,7 @@ package com.roksky.android.tools.reporting.utils;
 
 import android.view.View;
 
-import com.roksky.android.tools.reporting.model.DashBoard;
+import com.roksky.android.tools.reporting.model.xml.DashBoard;
 
 import java.util.ArrayList;
 import java.util.List;
